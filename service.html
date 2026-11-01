@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修繕羅針盤 - お問い合わせ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="service.css">
+    <script src="service.js" defer></script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="hero-section">
+        <div class="hero-image-overlay"></div>
+    </header>
+
+    <!-- Main Form Container -->
+    <main class="container">
+        <form class="contact-form" id="contactForm" enctype="multipart/form-data">
+
+            <!-- Contact Type Selection -->
+            <div class="form-section">
+                <label class="section-label">お問い合わせの種類をお選びください <span class="badge-required">必須</span></label>
+                <div class="type-grid">
+
+                    <!-- Option 1: まずは相談してみる -->
+                    <label class="type-card" id="cardConsult" for="radioConsult">
+                        <input type="radio" name="contact_type" value="consult" id="radioConsult" required>
+                        <div class="card-content">
+                            <div class="icon-box"><i class="fa-regular fa-comments"></i></div>
+                            <div class="text-box">
+                                <h3>まずは相談してみる</h3>
+                                <p>マンションの状況に合わせたアドバイスや、施工会社のご紹介について相談したい方はこちら。</p>
+                            </div>
+                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                    </label>
+
+                    <!-- Option 2: サービス資料を受け取る -->
+                    <label class="type-card" id="cardDocument" for="radioDocument">
+                        <input type="radio" name="contact_type" value="document" id="radioDocument">
+                        <div class="card-content">
+                            <div class="icon-box"><i class="fa-regular fa-file-lines"></i></div>
+                            <div class="text-box">
+                                <h3>サービス資料を受け取る</h3>
+                                <p>サービスの概要やご利用の流れをまとめた資料をダウンロードしたい方はこちら。</p>
+                            </div>
+                            <div class="check-circle"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progressBar">
+                <div class="progress-step active" data-step="1">
+                    <div class="circle">1</div>
+                    <span>基本情報</span>
+                </div>
+                <div class="progress-line" data-line="1"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="circle">2</div>
+                    <span>送信確認(任意)</span>
+                </div>
+                <div class="progress-line" data-line="2"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="circle">3</div>
+                    <span>完了</span>
+                </div>
+            </div>
+
+            <!-- Input Fields Grid -->
+            <div class="input-grid">
+                <div class="form-group">
+                    <label for="name">お名前 <span class="badge-required">必須</span></label>
+                    <input type="text" name="name" id="name"
+                           placeholder="例）山田 太郎" required>
+                </div>
+                <div class="form-group">
+                    <label for="furigana">ふりがな <span class="badge-required">必須</span></label>
+                    <input type="text" name="furigana" id="furigana"
+                           placeholder="例）やまだ たろう" required>
+                </div>
+                <div class="form-group">
+                    <label for="mail">メールアドレス <span class="badge-required">必須</span></label>
+                    <input type="email" name="mail" id="mail"
+                           placeholder="例）yamada@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">電話番号 <span class="badge-optional">任意</span></label>
+                    <input type="tel" name="phonenumber" id="phonenumber"
+                           placeholder="例）090-1234-5678">
+                </div>
+                <div class="form-group">
+                    <label for="region">お住まいの地域 <span class="badge-required">必須</span></label>
+                    <div class="select-wrapper">
+                        <select name="region" id="region" required>
+                            <option value="">選択してください</option>
+                            <option value="東京都">東京都</option>
+                            <option value="大阪府">大阪府</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="scale">マンションの規模 <span class="badge-optional">任意</span></label>
+                    <div class="select-wrapper">
+                        <select name="scale" id="scale">
+                            <option value="">選択してください</option>
+                            <option value="10戸未満">10戸未満</option>
+                            <option value="10〜30戸">10〜30戸</option>
+                            <option value="31〜100戸">31〜100戸</option>
+                            <option value="101戸以上">101戸以上</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group full-width">
+                <label for="message">ご相談内容・ご質問 <span class="badge-optional">任意</span></label>
+                <textarea name="message" id="message"
+                          placeholder="具体的なお悩みや、知りたいことがあればご記入ください。"
+                          maxlength="500"></textarea>
+                <div class="char-count">0 / 500</div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="form-group full-width">
+                <label>資料添付 <span class="badge-optional">任意</span> <span class="small-text">修繕見積書、建物の写真、図面などがあれば添付してください。</span></label>
+
+                <div class="upload-area-wrapper">
+                    <div class="drop-zone" id="dropZone">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        <p>ここにファイルをドラッグ＆ドロップ<br>または</p>
+                        <button type="button" class="btn-file-select" id="btnSelectFile">
+                            <i class="fa-solid fa-paperclip"></i> ファイルを選択
+                        </button>
+                        <input type="file" id="fileInput" name="attachments[]" multiple
+                               accept=".pdf,.jpg,.jpeg,.png,.xlsx,.docx" hidden>
+                        <p class="file-note">PDF / JPG / PNG / XLSX / DOCX 対応・1ファイル10MBまで</p>
+                    </div>
+
+                    <div class="upload-sidebar">
+                        <p class="sidebar-title">添付ファイルの例</p>
+                        <ul>
+                            <li><i class="fa-solid fa-circle-bullet"></i> 見積書・提案書（PDF）</li>
+                            <li><i class="fa-solid fa-circle-bullet"></i> 建物の写真（JPG / PNG）</li>
+                            <li><i class="fa-solid fa-circle-bullet"></i> 図面・修繕計画（PDF / XLSX）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="file-list" id="fileList"></div>
+            </div>
+
+            <div class="submit-area">
+                <button type="submit" class="btn-submit material-btn secondary" id="confirmBtn">
+                    確認画面へ進む <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <p class="privacy-note">
+                    <i class="fa-solid fa-lock"></i> ご入力いただいた情報は、プライバシーポリシーに基づき適切に管理いたします
+                </p>
+            </div>
+
+        </form>
+    </main>
+
+</body>
+</html>

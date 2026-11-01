@@ -1,0 +1,163 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(135deg, #E6F3FB 0%, #F0F8FF 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    color: #19448E; /* Deep blue text color */
+}
+
+/* Background Decorative Stripes */
+.background-decor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Diagonal stripe top left */
+.background-decor::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+}
+
+/* Diagonal stripe bottom right */
+.background-decor::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+}
+
+/* Main Container */
+.container {
+    width: 100%;
+    max-width: 375px; /* Typical mobile width */
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Success Icon (Circle with Check) */
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background-color: #2AB5C6; /* Teal color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(42, 181, 198, 0.3);
+}
+
+/* Typography */
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+}
+
+.text-content {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Envelope Icon */
+.mail-icon {
+    margin: 15px 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Footer Text */
+.footer-text {
+    margin-bottom: 40px;
+}
+
+/* Button Styles */
+.btn-return {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(90deg, #0CA4B6 0%, #1A438D 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(26, 67, 141, 0.3);
+    position: relative;
+}
+
+.btn-return:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 67, 141, 0.4);
+}
+
+.btn-return:active {
+    transform: translateY(0);
+}
+
+.arrow {
+    margin-left: 10px;
+    font-size: 1.2em;
+    transition: transform 0.2s;
+}
+
+.btn-return:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}

@@ -1,0 +1,387 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-blue: #1e4e8c;
+    --accent-blue: #0070c0;
+    --text-dark: #1a1a1a;
+    --text-gray: #555555;
+    --required-red: #ff4757;
+
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-bg-light: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --glass-blur: blur(12px);
+
+    --btn-gradient: linear-gradient(135deg, rgba(30, 78, 140, 0.9) 0%, rgba(42, 157, 143, 0.9) 100%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 50%, #fdfbfb 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+.hero-section {
+    position: relative;
+    background: url('images/image30.png') no-repeat center center;
+    background-size: contain;
+    height: 700px;
+    width: 100%;
+}
+
+.hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* =========================================
+   MAIN CONTAINER (GLASS PANEL)
+   ========================================= */
+.container {
+    max-width: 1000px;
+    margin: -120px auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-form {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 15px 45px rgba(31, 38, 135, 0.2);
+}
+
+/* =========================================
+   FORM SECTIONS & BADGES
+   ========================================= */
+.form-section { margin-bottom: 30px; }
+.section-label { font-weight: 700; margin-bottom: 15px; display: block; font-size: 1.05rem; }
+
+.badge-required {
+    background-color: var(--required-red); color: white;
+    font-size: 0.7rem; padding: 3px 8px; border-radius: 20px; margin-left: 5px;
+}
+.badge-optional {
+    background-color: #999; color: white;
+    font-size: 0.7rem; padding: 3px 8px; border-radius: 20px; margin-left: 5px;
+}
+
+/* =========================================
+   CONTACT TYPE CARDS
+   ========================================= */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+
+.type-card {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: block;
+}
+
+.type-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.type-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+}
+
+.card-content { padding: 25px; display: flex; gap: 18px; align-items: flex-start; }
+.icon-box { font-size: 1.6rem; color: var(--primary-blue); }
+.text-box h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--primary-blue); }
+.text-box p { font-size: 0.85rem; color: var(--text-gray); line-height: 1.5; }
+
+.type-card.selected {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--accent-blue);
+    box-shadow: 0 0 25px rgba(0, 112, 192, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.type-card.selected .check-circle {
+    display: flex;
+}
+
+.check-circle {
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 26px;
+    height: 26px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    color: white;
+    font-size: 0.85rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 112, 192, 0.5);
+}
+
+/* =========================================
+   PROGRESS BAR
+   ========================================= */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 45px 0;
+    padding: 0 50px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.progress-step .circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--glass-border);
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.progress-step span {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.progress-step.active .circle {
+    background: var(--primary-blue);
+    color: white;
+    box-shadow: 0 0 15px rgba(30, 78, 140, 0.5);
+    border-color: var(--primary-blue);
+}
+.progress-step.active span {
+    color: var(--primary-blue);
+}
+
+.progress-line {
+    flex-grow: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 15px;
+    margin-top: -22px;
+    transition: background 0.4s ease;
+}
+
+/* =========================================
+   INPUT FIELDS GRID
+   ========================================= */
+.input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; color: var(--primary-blue); }
+
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(0, 112, 192, 0.2);
+}
+
+.select-wrapper { position: relative; }
+.select-wrapper::after {
+    content: '\f107'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    pointer-events: none; color: #999;
+}
+select { appearance: none; -webkit-appearance: none; }
+
+.full-width { grid-column: 1 / -1; margin-top: 25px; }
+textarea { resize: vertical; min-height: 120px; }
+.char-count { text-align: right; font-size: 0.8rem; color: #999; margin-top: 5px; }
+
+/* =========================================
+   FILE UPLOAD
+   ========================================= */
+.small-text { font-size: 0.85rem; font-weight: 400; color: var(--text-gray); margin-left: 10px; }
+.upload-area-wrapper { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; margin-top: 15px; }
+
+.drop-zone {
+    border: 2px dashed rgba(0, 112, 192, 0.4);
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.drop-zone:hover { background: rgba(255, 255, 255, 0.7); border-color: var(--accent-blue); }
+.upload-icon { font-size: 2.8rem; color: rgba(0, 112, 192, 0.6); margin-bottom: 12px; }
+.drop-zone p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 18px; }
+
+.btn-file-select {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--glass-border);
+    padding: 12px 30px; border-radius: 30px;
+    cursor: pointer; font-weight: 700; color: var(--primary-blue);
+    margin-bottom: 12px; transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+}
+.btn-file-select:hover { background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transform: translateY(-2px); }
+
+.file-note { font-size: 0.75rem !important; color: #999 !important; }
+
+.upload-sidebar {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    padding: 25px; border-radius: 18px;
+}
+.sidebar-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; }
+.upload-sidebar ul { list-style: none; font-size: 0.85rem; color: var(--text-gray); }
+.upload-sidebar li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+
+.file-list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.file-item {
+    display: flex; align-items: center;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--glass-border);
+    padding: 15px 18px; border-radius: 12px; font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.file-icon { margin-right: 12px; font-size: 1.3rem; }
+.file-icon.pdf { color: #e74c3c; }
+.file-icon.img { color: #27ae60; }
+.file-name { font-weight: 700; flex-grow: 1; }
+.file-size { color: var(--text-gray); margin-right: 18px; }
+.btn-remove { background: none; border: none; cursor: pointer; color: #999; transition: color 0.2s; font-size: 1.1rem; }
+.btn-remove:hover { color: var(--required-red); }
+
+/* =========================================
+   SUBMIT BUTTON
+   ========================================= */
+.submit-area { margin-top: 50px; text-align: center; }
+
+.btn-submit {
+    background: linear-gradient(135deg, rgba(30, 78, 140, 0.85) 0%, rgba(42, 157, 143, 0.85) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    padding: 20px 70px;
+    border-radius: 50px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 35px rgba(31, 38, 135, 0.35);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    max-width: 450px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    margin: 0 auto;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 45px rgba(31, 38, 135, 0.5);
+    background: linear-gradient(135deg, rgba(30, 78, 140, 0.95) 0%, rgba(42, 157, 143, 0.95) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 1);
+}
+
+.privacy-note { font-size: 0.8rem; color: var(--text-gray); margin-top: 18px; }
+
+/* =========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================= */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-section { height: 440px; }
+    .container { max-width: 90%; margin-top: -100px; }
+    .contact-form { padding: 40px; }
+    .progress-container { padding: 0 30px; }
+}
+
+@media (max-width: 768px) {
+    .input-grid, .type-grid, .upload-area-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .hero-section { height: 320px; }
+    .container {
+        padding: 0 15px;
+        margin-top: -70px;
+        max-width: 100%;
+    }
+    .contact-form { padding: 30px; border-radius: 20px; }
+    .progress-container { padding: 0 15px; }
+    .progress-step span { font-size: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+    .hero-section { height: 240px; }
+    .container { margin-top: -50px; padding: 0 10px; }
+    .contact-form { padding: 20px; border-radius: 16px; }
+    .card-content { padding: 18px; gap: 12px; }
+    .icon-box { font-size: 1.3rem; }
+    .text-box h3 { font-size: 0.95rem; }
+    .text-box p { font-size: 0.8rem; }
+    .progress-step .circle { width: 32px; height: 32px; font-size: 0.8rem; }
+    .progress-step span { font-size: 0.65rem; }
+    .btn-submit { padding: 16px 30px; font-size: 1rem; }
+    .drop-zone { padding: 25px; }
+    .upload-icon { font-size: 2.2rem; }
+    .upload-sidebar { padding: 18px; }
+}
